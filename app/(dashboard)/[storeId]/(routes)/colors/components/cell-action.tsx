@@ -3,7 +3,12 @@
 import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import axios from 'axios';
-import { Copy, Edit, MoreHorizontal, Trash } from 'lucide-react';
+import { 
+  Copy, 
+  Edit, 
+  MoreHorizontal, 
+  Trash 
+} from 'lucide-react';
 import { toast } from 'react-hot-toast';
 
 import AlertModal from '@/components/modals/alert-modal';
@@ -16,10 +21,10 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-import { BillboardColumn } from './columns';
+import { ColorColumn } from './columns';
 
 interface CellActionProps {
-  data: BillboardColumn;
+  data: ColorColumn;
 }
 
 const CellAction: React.FC<CellActionProps> = ({ data }) => {
@@ -31,20 +36,20 @@ const CellAction: React.FC<CellActionProps> = ({ data }) => {
 
   const onCopy = (id: string) => {
     navigator.clipboard.writeText(id);
-    toast.success('Billboard ID copied');
+    toast.success('Color ID copied');
   };
 
   const onDelete = async () => {
     try {
       setLoading(false);
       await axios.delete(
-        `/api/${params.storeId}/billboards/${data.id}`
+        `/api/${params.storeId}/colors/${data.id}`
       );
       router.refresh();
-      toast.success('Billboard deleted');
+      toast.success('Color deleted');
     } catch (error) {
       toast.error(
-        'Make sure you removed all categories using this billboard first'
+        'Make sure you removed all products using this color first'
       );
     } finally {
       setLoading(false);
@@ -71,7 +76,7 @@ const CellAction: React.FC<CellActionProps> = ({ data }) => {
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
           <DropdownMenuItem
             onClick={() =>
-              router.push(`/${params.storeId}/billboards/${data.id}`)
+              router.push(`/${params.storeId}/colors/${data.id}`)
             }
           >
             <Edit className="mr-2 h-4 w-4" />
