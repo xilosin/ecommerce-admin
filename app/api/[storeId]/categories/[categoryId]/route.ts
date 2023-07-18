@@ -16,6 +16,9 @@ export async function GET(
       where: {
         id: params.categoryId,
       },
+      include: {
+        billboard: true,
+      },
     });
 
     return NextResponse.json(category);
@@ -80,7 +83,7 @@ export async function PATCH(
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { storeId: string, categoryId: string } }
+  { params }: { params: { storeId: string; categoryId: string } }
 ) {
   try {
     const { userId } = auth();
@@ -103,7 +106,6 @@ export async function DELETE(
     if (!storeByUserId) {
       return new NextResponse('Unauthorized', { status: 403 });
     }
-
 
     const category = await prismadb.category.deleteMany({
       where: {
