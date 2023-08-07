@@ -87,6 +87,7 @@ export const StoreModal = () => {
               "
             >
               <Button
+                type='button'
                 variant="outline"
                 disabled={loading}
                 onClick={storeModal.onClose}
