@@ -1,4 +1,4 @@
-# Fullstack Ecommerce Admin
+# Fullstack Multistore Ecommerce Admin
 [Website](https://ecommerce-admin-two-chi.vercel.app)
 
 ## Features 
